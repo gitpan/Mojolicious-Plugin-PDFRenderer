@@ -2,7 +2,6 @@ package Mojolicious::Plugin::PDFRenderer;
 use Mojo::Base 'Mojolicious::Plugin';
 use PDF::WebKit;
 
-use feature ':5.10';
 sub register {
     my ( $self, $app, $opts ) = @_;
     $app->hook( around_action => sub {
@@ -40,7 +39,7 @@ Mojolicious::Plugin::PDFRenderer - Uses wkhtmltopdf via PDF::WebKit to render yo
 
 =head1 VERSION
 
-version 0.03
+version 0.04
 
 =head1 SYNOPSIS
 

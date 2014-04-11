@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use 5.010000;
+use 5.006;
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -22,8 +22,7 @@ my %WriteMakefileArgs = (
   "NAME" => "Mojolicious::Plugin::PDFRenderer",
   "PREREQ_PM" => {
     "Mojo::Base" => 0,
-    "PDF::WebKit" => 0,
-    "feature" => 0
+    "PDF::WebKit" => 0
   },
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
@@ -38,7 +37,7 @@ my %WriteMakefileArgs = (
     "version" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.03",
+  "VERSION" => "0.04",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -56,7 +55,6 @@ my %FallbackPrereqs = (
   "Mojo::Base" => 0,
   "PDF::WebKit" => 0,
   "Test::More" => 0,
-  "feature" => 0,
   "strict" => 0,
   "version" => 0,
   "warnings" => 0
