@@ -51,8 +51,9 @@ my $static_prereqs = do { my $x = {
        'runtime' => {
                       'requires' => {
                                       'Mojo::Base' => '0',
-                                      'Mojo::JSON' => '0',
-                                      'perl' => '5.006'
+                                      'PDF::WebKit' => '0',
+                                      'feature' => '0',
+                                      'perl' => 'v5.10.0'
                                     }
                     },
        'test' => {
@@ -69,7 +70,7 @@ my $static_prereqs = do { my $x = {
                                    'IPC::Open3' => '0',
                                    'List::Util' => '0',
                                    'Test::More' => '0',
-                                   'perl' => '5.006',
+                                   'perl' => 'v5.10.0',
                                    'strict' => '0',
                                    'version' => '0',
                                    'warnings' => '0'

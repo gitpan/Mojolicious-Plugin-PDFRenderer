@@ -1,13 +1,31 @@
 package Mojolicious::Plugin::PDFRenderer;
 use Mojo::Base 'Mojolicious::Plugin';
-use Mojo::JSON qw/decode_json/;
+use PDF::WebKit;
 
+use feature ':5.10';
 sub register {
     my ( $self, $app, $opts ) = @_;
-    # writing it now...
+    $app->hook( around_action => sub {
+        my ( $next, $c, $action, $last ) = @_;
+        my $url  = $c->req->url->to_abs;
+        return $next->() unless $c->stash->{format} and $c->stash->{format} eq 'pdf';
+        $c->respond_to( pdf => sub {
+            my $url  = $c->req->url->to_abs;
+               $url =~ s/\.pdf.*$//i;
+
+            $app->log->debug( "...fetching url $url for pdf" );
+
+            my $kit = new PDF::WebKit ( $url, %{ $opts } );
+            my $pdf = $kit->to_pdf;
+
+            $c->res->headers->content_type( 'application/pdf' );
+            $c->res->body( $pdf );
+            $c->rendered( 200 );
+        } );
+    } );
 }
 
-# ABSTRACT: 
+# ABSTRACT: Uses wkhtmltopdf via PDF::WebKit to render your app exactly as it looks in Chrome/WebKit but vector scalable and in PDF.
 1;
 
 __END__
@@ -18,11 +36,11 @@ __END__
 
 =head1 NAME
 
-Mojolicious::Plugin::PDFRenderer -  
+Mojolicious::Plugin::PDFRenderer - Uses wkhtmltopdf via PDF::WebKit to render your app exactly as it looks in Chrome/WebKit but vector scalable and in PDF.
 
 =head1 VERSION
 
-version 0.01
+version 0.03
 
 =head1 SYNOPSIS
 
@@ -32,7 +50,14 @@ version 0.01
     sub startup {
         my $self = shift;
 
-        $self->plugin( 'Mojolicious::Plugin::PDFRenderer' );
+        $self->plugin( 'Mojolicious::Plugin::PDFRenderer', {
+            javascript_delay => 1000
+            , load_error_handling => 'ignore'
+            , page_height => '5in'
+            , page_width => '10.5in'
+            # options that would otherwise be passed to PDF::WebKit,
+            # see `wkhtmltopdf --extended-help` for more (replace dashes w/ underscores)
+        } );
         # ...
     }
 
@@ -45,6 +70,17 @@ Then go to http://yourapp:3000/any/route, take a good look, then go to http://yo
 =item L<PDF::WebKit>
 
 =item L<"wkhtmltopdf"|http://wkhtmltopdf.org/>
+
+=item A preforking server instance running (e.g. ./script/app prefork [...] or ./script/app hypnotoad [...], etc) with at least 2
+connections / workers available so that the extension can hit the back-end again, i.e. a request in a request.
+
+=back
+
+=head1 SEE ALSO
+
+=over 2
+
+=item Other cool stuff I've written
 
 =back
 

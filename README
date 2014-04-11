@@ -1,10 +1,12 @@
 NAME
 
-    Mojolicious::Plugin::PDFRenderer -
+    Mojolicious::Plugin::PDFRenderer - Uses wkhtmltopdf via PDF::WebKit to
+    render your app exactly as it looks in Chrome/WebKit but vector
+    scalable and in PDF.
 
 VERSION
 
-    version 0.01
+    version 0.03
 
 SYNOPSIS
 
@@ -14,7 +16,14 @@ SYNOPSIS
         sub startup {
             my $self = shift;
     
-            $self->plugin( 'Mojolicious::Plugin::PDFRenderer' );
+            $self->plugin( 'Mojolicious::Plugin::PDFRenderer', {
+                javascript_delay => 1000
+                , load_error_handling => 'ignore'
+                , page_height => '5in'
+                , page_width => '10.5in'
+                # options that would otherwise be passed to PDF::WebKit,
+                # see `wkhtmltopdf --extended-help` for more (replace dashes w/ underscores)
+            } );
             # ...
         }
 
@@ -26,6 +35,15 @@ REQUIREMENTS
     PDF::WebKit
 
     "wkhtmltopdf" <http://wkhtmltopdf.org/>
+
+    A preforking server instance running (e.g. ./script/app prefork [...]
+    or ./script/app hypnotoad [...], etc) with at least 2 connections /
+    workers available so that the extension can hit the back-end again,
+    i.e. a request in a request.
+
+SEE ALSO
+
+    Other cool stuff I've written
 
 SUPPORT
 

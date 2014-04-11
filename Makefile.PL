@@ -3,14 +3,14 @@
 use strict;
 use warnings;
 
-use 5.006;
+use 5.010000;
 
 use ExtUtils::MakeMaker 6.30;
 
 
 
 my %WriteMakefileArgs = (
-  "ABSTRACT" => "Gives you a simple %args hash of parameters on the request, even if they're posted in JSON.",
+  "ABSTRACT" => "Uses wkhtmltopdf via PDF::WebKit to render your app exactly as it looks in Chrome/WebKit but vector scalable and in PDF",
   "AUTHOR" => "Nour Sharabash <amirite\@cpan.org>",
   "BUILD_REQUIRES" => {},
   "CONFIGURE_REQUIRES" => {
@@ -22,7 +22,8 @@ my %WriteMakefileArgs = (
   "NAME" => "Mojolicious::Plugin::PDFRenderer",
   "PREREQ_PM" => {
     "Mojo::Base" => 0,
-    "Mojo::JSON" => 0
+    "PDF::WebKit" => 0,
+    "feature" => 0
   },
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
@@ -37,7 +38,7 @@ my %WriteMakefileArgs = (
     "version" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.01",
+  "VERSION" => "0.03",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -53,8 +54,9 @@ my %FallbackPrereqs = (
   "IPC::Open3" => 0,
   "List::Util" => 0,
   "Mojo::Base" => 0,
-  "Mojo::JSON" => 0,
+  "PDF::WebKit" => 0,
   "Test::More" => 0,
+  "feature" => 0,
   "strict" => 0,
   "version" => 0,
   "warnings" => 0

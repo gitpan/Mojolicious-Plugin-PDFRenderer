@@ -1,5 +1,5 @@
 ---
-abstract: "Gives you a simple %args hash of parameters on the request, even if they're posted in JSON."
+abstract: 'Uses wkhtmltopdf via PDF::WebKit to render your app exactly as it looks in Chrome/WebKit but vector scalable and in PDF'
 author:
   - 'Nour Sharabash <amirite@cpan.org>'
 build_requires:
@@ -11,7 +11,7 @@ build_requires:
   IPC::Open3: '0'
   List::Util: '0'
   Test::More: '0'
-  perl: '5.006'
+  perl: v5.10.0
   strict: '0'
   version: '0'
   warnings: '0'
@@ -32,16 +32,17 @@ no_index:
 provides:
   Mojolicious::Plugin::PDFRenderer:
     file: lib/Mojolicious/Plugin/PDFRenderer.pm
-    version: '0.01'
+    version: '0.03'
 requires:
   Mojo::Base: '0'
-  Mojo::JSON: '0'
-  perl: '5.006'
+  PDF::WebKit: '0'
+  feature: '0'
+  perl: v5.10.0
 resources:
   bugtracker: https://github.com/sharabash/mojolicious-plugin-pdfrenderer/issues
   homepage: https://metacpan.org/release/Mojolicious-Plugin-PDFRenderer
   repository: git://github.com/sharabash/mojolicious-plugin-pdfrenderer.git
-version: '0.01'
+version: '0.03'
 x_authority: cpan:AMIRITE
 x_contributors:
   - 'Nour Sharabash <nour.sharabash@gmail.com>'
