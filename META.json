@@ -30,8 +30,9 @@
       "runtime" : {
          "requires" : {
             "Mojo::Base" : "0",
+            "Mojolicious::Plugin::Args" : "0",
             "PDF::WebKit" : "0",
-            "perl" : "5.006"
+            "perl" : "5.010"
          }
       },
       "test" : {
@@ -48,7 +49,7 @@
             "IPC::Open3" : "0",
             "List::Util" : "0",
             "Test::More" : "0",
-            "perl" : "5.006",
+            "perl" : "5.010",
             "strict" : "0",
             "version" : "0",
             "warnings" : "0"
@@ -58,7 +59,7 @@
    "provides" : {
       "Mojolicious::Plugin::PDFRenderer" : {
          "file" : "lib/Mojolicious/Plugin/PDFRenderer.pm",
-         "version" : "0.04"
+         "version" : "0.05"
       }
    },
    "release_status" : "stable",
@@ -73,7 +74,7 @@
          "web" : "https://github.com/sharabash/mojolicious-plugin-pdfrenderer"
       }
    },
-   "version" : "0.04",
+   "version" : "0.05",
    "x_authority" : "cpan:AMIRITE",
    "x_contributors" : [
       "Nour Sharabash <nour.sharabash@gmail.com>"
