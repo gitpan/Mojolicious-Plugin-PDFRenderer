@@ -50,6 +50,7 @@ my $static_prereqs = do { my $x = {
                       },
        'runtime' => {
                       'requires' => {
+                                      'List::AllUtils' => '0',
                                       'Mojo::Base' => '0',
                                       'Mojolicious::Plugin::Args' => '0',
                                       'PDF::WebKit' => '0',

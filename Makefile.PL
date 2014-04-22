@@ -21,6 +21,7 @@ my %WriteMakefileArgs = (
   "LICENSE" => "perl",
   "NAME" => "Mojolicious::Plugin::PDFRenderer",
   "PREREQ_PM" => {
+    "List::AllUtils" => 0,
     "Mojo::Base" => 0,
     "Mojolicious::Plugin::Args" => 0,
     "PDF::WebKit" => 0
@@ -38,7 +39,7 @@ my %WriteMakefileArgs = (
     "version" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.05",
+  "VERSION" => "0.06",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -52,6 +53,7 @@ my %FallbackPrereqs = (
   "File::Temp" => 0,
   "IO::Handle" => 0,
   "IPC::Open3" => 0,
+  "List::AllUtils" => 0,
   "List::Util" => 0,
   "Mojo::Base" => 0,
   "Mojolicious::Plugin::Args" => 0,
