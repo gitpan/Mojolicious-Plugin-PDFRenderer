@@ -32,7 +32,7 @@ no_index:
 provides:
   Mojolicious::Plugin::PDFRenderer:
     file: lib/Mojolicious/Plugin/PDFRenderer.pm
-    version: '0.06'
+    version: '0.07'
 requires:
   List::AllUtils: '0'
   Mojo::Base: '0'
@@ -43,7 +43,7 @@ resources:
   bugtracker: https://github.com/sharabash/mojolicious-plugin-pdfrenderer/issues
   homepage: https://metacpan.org/release/Mojolicious-Plugin-PDFRenderer
   repository: git://github.com/sharabash/mojolicious-plugin-pdfrenderer.git
-version: '0.06'
+version: '0.07'
 x_authority: cpan:AMIRITE
 x_contributors:
   - 'Nour Sharabash <nour.sharabash@gmail.com>'
