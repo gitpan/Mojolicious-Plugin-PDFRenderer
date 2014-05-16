@@ -82,6 +82,8 @@ sub register {
             $c->rendered( 200 );
         } );
     } );
+
+    $app->helper( is_pdf_request => sub { shift->req->headers->user_agent =~ /wkhtmltopdf/i ? 1 : 0 } );
 }
 
 # ABSTRACT: Uses wkhtmltopdf via PDF::WebKit to render your app exactly as it looks in Chrome/WebKit but vector scalable and in PDF.
@@ -99,7 +101,7 @@ Mojolicious::Plugin::PDFRenderer - Uses wkhtmltopdf via PDF::WebKit to render yo
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
